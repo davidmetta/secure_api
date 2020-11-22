@@ -10,7 +10,7 @@ module SecureApi
       end
 
       def create_migration
-        copy_file 'migration.rb', 'db/migrate/secure_api_migration..rb'
+        copy_file 'migration.rb', "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_secure_api_migration.rb"
       end
     end
   end
