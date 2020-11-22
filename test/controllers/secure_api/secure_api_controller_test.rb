@@ -12,17 +12,17 @@ module SecureApi
 
     test 'login' do
       assert_no_difference 'Token.count' do
-        post login_url, params: { email: @user.email, password: '123' }
+        post login_url, params: { custom_email_attr: @user.custom_email_attr, password: '123' }
         assert_response 401
         assert_equal @error_messages[:wrong_credentials], @response.parsed_body['error']['message']
       end
 
       assert_difference 'Token.count', +1 do
-        post login_url, params: { email: @user.email, password: '123456' }
+        post login_url, params: { custom_email_attr: @user.custom_email_attr, password: '123456' }
         assert_response :success
       end
 
-      post login_url, params: { email: @user.email }
+      post login_url, params: { custom_email_attr: @user.custom_email_attr }
       assert_response 401
       assert_equal @error_messages[:missing_field], @response.parsed_body['error']['message']
     end
