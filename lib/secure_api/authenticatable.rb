@@ -14,11 +14,11 @@ module SecureApi
       end
 
       def secure_api_response_default
-        as_json(except: %I[#{SecureApi.password_attr} created_at updated_at])
-      end
-
-      def secure_api_response_actual
-        respond_to?(:secure_api_response) ? secure_api_response : secure_api_response_default
+        if respond_to?(:secure_api_response)
+          secure_api_response
+        else
+          as_json(except: %I[#{SecureApi.password_attr} created_at updated_at])
+        end
       end
 
       private

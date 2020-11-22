@@ -12,7 +12,7 @@ curl -X POST 'https://MY_OWN_DOMAIN/user/login' \
   -H 'Content-Type: application/json' \
   -d '{
     "user": {
-      "email": "example@reqpay.com",
+      "email": "name@example.com",
       "password": "123456"
     }
   }'

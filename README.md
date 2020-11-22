@@ -1,5 +1,7 @@
 # SecureApi
 
+![Test](https://github.com/davidmetta/secure_api/workflows/Test/badge.svg)
+
 SecureApi is a Tiny JWT-based Authenticaton framework for RoR API's
 
 ## Table of Contents
@@ -28,7 +30,7 @@ Or install it yourself as:
 
 ## Usage
 
-#### Initializer and Migration
+### Initializer and Migration
 
 Before using the gem you must run the SecureApi generator:
 
@@ -36,10 +38,9 @@ Before using the gem you must run the SecureApi generator:
 
 This will create an initializer at `config/initializers/secure_api.rb` and a migration at `db/migrate/secure_api_migration.rb`.
 
-Don't forget to migrate your db before continuing, in order to create the `secure_api_tokens` table, and
-you will also need to update the initializer's required fields.
+Don't forget to migrate your db before continuing, in order to create the `secure_api_tokens` table, you will also need to update the initializer's required fields.
 
-#### Usage requirements
+### Usage requirements
 
 In order for the gem to work, your `User` class must have `email` and `password` fields, you can customize them in the initializer.
 
@@ -55,11 +56,11 @@ end
 
 When making an authenticated requests, the `Authorization` header should be included, with your token.
 
-In addition to authenticating the requests, SecureApi mounts a number of routes at `/user`, they can be found [here](ROUTES.md)
+In addition to authenticating the requests, SecureApi mounts a number of routes at `/user`, detailed documentation can be found [here](ROUTES.md)
 
-#### Extra
+## Extra
 
-## User response
+### User response
 
 SecureApi controller responses that return a user, default to this JSON response:
 
@@ -91,7 +92,7 @@ class User < ApplicationRecord
 end
 ```
 
-## Helpers
+### Helpers
 
 SecureApi provides some additional helpers.
 
@@ -113,8 +114,11 @@ end
 
 ```
 
-In addition there is `authenticate_cable_request!` to authenticate ActionCable connections, given the token is included in the params (`wss://MY_OWN_DOMAIN/cable?Authorization=TOKEN`):
+If your project does not use `Minitest`, you must include these modules into your test suite of choice:
 
+     SecureApi::Helpers::Test, SecureApi
+
+In addition there is `authenticate_cable_request!` to authenticate ActionCable connections, given the token is included in the params (`wss://MY_OWN_DOMAIN/cable?Authorization=TOKEN`):
 
 ```ruby
 module ApplicationCable
@@ -148,7 +152,7 @@ user.secure_token
 
 ## Development
 
-After checking out the repo, run `bundle install` to install dependencies. You can also run `rails c` or `rails s` to run the server (Dummy app) or the console.
+After checking out the repo, run `bundle install` to install dependencies. You can also run `rails s` or `rails c` to run the server (Dummy app) or the console.
 
 ## Testing
 
