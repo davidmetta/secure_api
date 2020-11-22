@@ -18,7 +18,7 @@ module SecureApi
         ActionDispatch::IntegrationTest.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionDispatch::IntegrationTest')
         ActionCable::Connection::TestCase.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionCable::Connection::TestCase')
       else
-        message = <<-ERROR
+        Logger.new($stdout).warn <<-ERROR
 
         ### SecureApi Not Initialized ###
 
@@ -27,7 +27,6 @@ module SecureApi
         If you did not run `rails g secure_api:install` do so now, add the required configuration, and migrate your database
 
         ERROR
-        raise NotInitializedError, message, []
       end
     end
   end
