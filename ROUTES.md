@@ -11,10 +11,8 @@ If you have customized the `email` and `password` fields, you should keep the sa
 curl -X POST 'https://MY_OWN_DOMAIN/user/login' \
   -H 'Content-Type: application/json' \
   -d '{
-    "user": {
-      "email": "name@example.com",
-      "password": "123456"
-    }
+    "email": "name@example.com",
+    "password": "123456"
   }'
 ```
 
@@ -24,8 +22,8 @@ curl -X POST 'https://MY_OWN_DOMAIN/user/login' \
 ### Request Body
 Field | Type | required | Default | Description
 ----- | ---- | -------- | ------- | -----------
-user[email] | String | true | | email of the user
-user[password] | String | true | | password of the user
+email | String | true | | email of the user
+password | String | true | | password of the user
 
 ### Response Status
 200
