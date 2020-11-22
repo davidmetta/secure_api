@@ -1,6 +1,7 @@
 require "secure_api/engine"
 
 module SecureApi
+  class NotInitializedError < StandardError; end
   API_ERRORS = {
     missing_field: 'User email or password is missing.',
     wrong_credentials: 'Wrong credentials, your email or password are wrong.',

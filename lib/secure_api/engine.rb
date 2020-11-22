@@ -18,7 +18,7 @@ module SecureApi
         ActionDispatch::IntegrationTest.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionDispatch::IntegrationTest')
         ActionCable::Connection::TestCase.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionCable::Connection::TestCase')
       else
-        warn <<-ERROR
+        raise NotInitializedError, <<-ERROR
 
         ### SecureApi Not Initialized ###
 
