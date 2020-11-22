@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    secure_api (0.0.3)
+    secure_api (0.0.4)
       jwt (~> 2.2.2)
       rails (~> 6.0.3, >= 6.0.3.4)
 
