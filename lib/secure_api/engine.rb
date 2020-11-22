@@ -11,21 +11,23 @@ module SecureApi
     end
 
     config.to_prepare do
-      unless SecureApi.config_ready?
-        raise NotInitializedError, <<-ERROR
-        NotInitializedError
+      if SecureApi.config_ready?
+        SecureApi.user_class.include(SecureApi::Authenticatable)
+        SecureApi.base_controller.include(SecureApi::Helpers::Controller)
+        ActionCable::Connection::Base.include(SecureApi::Helpers::Cable) if Object.const_defined?('ActionCable::Connection::Base')
+        ActionDispatch::IntegrationTest.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionDispatch::IntegrationTest')
+        ActionCable::Connection::TestCase.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionCable::Connection::TestCase')
+      else
+        warn <<-ERROR
+
+        ### SecureApi Not Initialized ###
 
         The initializer must be set up to install SecureApi in your application.
 
         If you did not run `rails g secure_api:install` do so now, add the required configuration, and migrate your database
+
         ERROR
       end
-
-      SecureApi.user_class.include(SecureApi::Authenticatable)
-      SecureApi.base_controller.include(SecureApi::Helpers::Controller)
-      ActionCable::Connection::Base.include(SecureApi::Helpers::Cable) if Object.const_defined?('ActionCable::Connection::Base')
-      ActionDispatch::IntegrationTest.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionDispatch::IntegrationTest')
-      ActionCable::Connection::TestCase.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionCable::Connection::TestCase')
     end
   end
 end
