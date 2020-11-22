@@ -3,16 +3,11 @@ module SecureApi
     isolate_namespace SecureApi
     config.generators.api_only = true
 
-    initializer 'migration.secure_ap', before: :load_config_initializers do
-      # Includes engine migration when doing db:migrate
-      # config.paths["db/migrate"].expanded.each do |expanded_path|
-      #   Rails.application.config.paths["db/migrate"] << expanded_path
-      # end
-
+    initializer 'routes.secure_api', before: :load_config_initializers do
       # Mount engine routes
-      # Rails.application.routes.append do
-      #   mount SecureApi::Engine, at: '/user'
-      # end
+      Rails.application.routes.append do
+        mount SecureApi::Engine, at: '/user'
+      end
     end
 
     # Include basic helpers where needed
