@@ -6,12 +6,12 @@ module SecureApi
 
     def user_class
       klass = @user_class || '::User'
-      klass.constantize if defined?(klass)
+      klass.constantize if Object.const_defined?(klass)
     end
 
     def base_controller
       klass = @base_controller || '::ApplicationController'
-      klass.constantize if defined?(klass)
+      klass.constantize if Object.const_defined?(klass)
     end
 
     def token_expires_in
