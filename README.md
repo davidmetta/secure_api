@@ -1,6 +1,7 @@
 # SecureApi
 
 ![Test](https://github.com/davidmetta/secure_api/workflows/Test/badge.svg)
+[![Gem Version](https://badge.fury.io/rb/secure_api.svg)](https://badge.fury.io/rb/secure_api)
 
 SecureApi is a Tiny JWT-based Authenticaton framework for RoR API's
 
