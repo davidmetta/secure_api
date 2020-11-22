@@ -20,8 +20,10 @@ Gem::Specification.new do |spec|
   # spec.metadata["changelog_uri"] = ""
 
   # spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) { `git ls-files -z`.split("\x0") }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  # spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) { `git ls-files -z`.split("\x0") }
+  # spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.start_with?('test/') }
+  spect.test_files = `git ls-files -z`.split("\x0").select { |f| f.start_with?('test/') }
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
