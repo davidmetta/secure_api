@@ -29,7 +29,7 @@ module SecureApi
     private
 
     def set_token
-      exp = Time.now.to_i + 172_800
+      exp = Time.now.to_i + SecureApi.token_expires_in
       payload = { data: resource_id, exp: exp }
       token = JWT.encode payload, SECRET, 'HS256'
 

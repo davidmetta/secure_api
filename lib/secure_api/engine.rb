@@ -20,6 +20,8 @@ module SecureApi
       SecureApi.user_class.include SecureApi::Authenticatable
       SecureApi.base_controller.include SecureApi::Helpers::Controller
       ActionCable::Connection::Base.include SecureApi::Helpers::Cable
+      ActionDispatch::IntegrationTest.include SecureApi::Helpers::Test, SecureApi
+      ActionCable::Connection::TestCase.include SecureApi::Helpers::Test, SecureApi
     end
   end
 end

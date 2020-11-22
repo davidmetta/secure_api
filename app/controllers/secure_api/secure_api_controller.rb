@@ -49,7 +49,7 @@ module SecureApi
 
     def respond_with(user)
       render json: {
-        user: user.as_json(except: %i[password created_at updated_at]),
+        user: user.secure_api_response_actual,
         token: {
           token: user.secure_token.token,
           expiration: user.secure_token.exp_date.to_time.iso8601

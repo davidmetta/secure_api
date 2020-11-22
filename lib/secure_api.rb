@@ -15,27 +15,15 @@ module SecureApi
   autoload :Encryptor
   autoload :Helpers
 
-  mattr_accessor :user_class, :base_controller
-
   class << self
+    delegate(*Configuration::OPTIONS, to: :configuration)
+
     def configuration
       @configuration ||= Configuration.new
     end
 
     def configure
       yield configuration
-    end
-
-    def user_class
-      (configuration.user_class || '::User').constantize
-    end
-
-    def base_controller
-      (configuration.base_controller || '::ApplicationController').constantize
-    end
-
-    def encryption_secret
-      configuration.encryption_secret
     end
   end
 end
