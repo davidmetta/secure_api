@@ -27,11 +27,11 @@ module SecureApi
     end
 
     def user_class
-      configuration.user_class.constantize
+      (configuration.user_class || '::User').constantize
     end
 
     def base_controller
-      configuration.base_controller.constantize
+      (configuration.base_controller || '::ApplicationController').constantize
     end
 
     def encryption_secret
