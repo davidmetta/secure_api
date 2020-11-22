@@ -139,7 +139,7 @@ module ApplicationCable
 end
 ```
 
-## Secure token
+### Secure token
 
 The `secure_token` method is avilabe to the user instance, which returns a `SecureApi::Token` instance:
 
