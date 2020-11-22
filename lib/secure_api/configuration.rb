@@ -5,11 +5,13 @@ module SecureApi
     attr_accessor(*OPTIONS)
 
     def user_class
-      (@user_class || '::User').constantize
+      klass = @user_class || '::User'
+      klass.constantize if defined?(klass)
     end
 
     def base_controller
-      (@base_controller || '::ApplicationController').constantize
+      klass = @base_controller || '::ApplicationController'
+      klass.constantize if defined?(klass)
     end
 
     def token_expires_in
