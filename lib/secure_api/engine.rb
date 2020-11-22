@@ -18,15 +18,15 @@ module SecureApi
         ActionDispatch::IntegrationTest.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionDispatch::IntegrationTest')
         ActionCable::Connection::TestCase.include(SecureApi::Helpers::Test, SecureApi) if Object.const_defined?('ActionCable::Connection::TestCase')
       else
-        Logger.new($stdout).warn <<-ERROR
+        # Logger.new($stdout) <<-ERROR
 
-        ### SecureApi Not Initialized ###
+        # ### SecureApi Not Initialized ###
 
-        The initializer must be set up to install SecureApi in your application.
+        # The initializer must be set up to install SecureApi in your application.
 
-        If you did not run `rails g secure_api:install` do so now, add the required configuration, and migrate your database
+        # If you did not run `rails g secure_api:install` do so now, add the required configuration, and migrate your database
 
-        ERROR
+        # ERROR
       end
     end
   end
