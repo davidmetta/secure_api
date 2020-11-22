@@ -6,7 +6,7 @@ module SecureApi
 
     setup do
       @routes = Engine.routes
-      @user = User.create(email: 'name@example.com', password: '123456')
+      @user = User.create(custom_email_attr: 'name@example.com', password: '123456')
       @error_messages = SecureApi::API_ERRORS
     end
 

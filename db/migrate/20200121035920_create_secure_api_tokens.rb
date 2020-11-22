@@ -1,6 +1,6 @@
 class CreateSecureApiTokens < ActiveRecord::Migration[6.0]
   def change
-    return if Rails.env.test?
+    return if table_exists?(:secure_api_tokens)
 
     create_table :secure_api_tokens do |t|
       t.string :token

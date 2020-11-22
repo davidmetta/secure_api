@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NavigationTest < ActionDispatch::IntegrationTest
   test 'reject unauthorized requests' do
-    user = User.create(email: 'name@example.com', password: '123456')
+    user = User.create(custom_email_attr: 'name@example.com', password: '123456')
     token = SecureApi::Token.create(resource: user)
 
     get root_url

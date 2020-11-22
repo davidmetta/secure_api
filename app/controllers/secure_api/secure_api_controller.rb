@@ -5,15 +5,15 @@ module SecureApi
     # end
 
     def login
-      email, password = params[:email], params[:password]
+      email, password = params[SecureApi.email_attr], params[SecureApi.password_attr]
 
       if email.blank? || password.blank?
         basic_error(:missing_field) && return
       end
 
-      @user = SecureApi.user_class.find_by_email(email)
+      @user = SecureApi.user_class.find_by_secure_email(email)
 
-      if @user && Encryptor.new.compare(password, @user.password)
+      if @user && Encryptor.new.compare(password, @user.secure_password)
         if @user.secure_token.nil? || @user.secure_token.expired?
           @user.secure_token&.destroy
           Token.create(resource: @user)

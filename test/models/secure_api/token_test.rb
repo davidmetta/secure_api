@@ -3,7 +3,7 @@ require 'test_helper'
 module SecureApi
   class TokenTest < ActiveSupport::TestCase
     setup do
-      @user = User.create(email: 'name@example.com', password: '123456')
+      @user = User.create(custom_email_attr: 'name@example.com', password: '123456')
     end
 
     test 'is_ok' do

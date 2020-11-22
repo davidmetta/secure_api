@@ -4,10 +4,17 @@ module SecureApi
 
     included do
       has_one :secure_token, as: :resource, dependent: :destroy, class_name: 'SecureApi::Token'
-      before_save :encrypt_password, if: :will_save_change_to_password?
+      before_save :encrypt_password, if: "will_save_change_to_#{SecureApi.password_attr}?".to_sym
+
+      alias_attribute :secure_password, SecureApi.password_attr
+      alias_attribute :secure_email, SecureApi.email_attr
+
+      def self.find_by_secure_email(string)
+        find_by(SecureApi.email_attr => string)
+      end
 
       def secure_api_response_default
-        as_json(except: %i[password created_at updated_at])
+        as_json(except: %I[#{SecureApi.password_attr} created_at updated_at])
       end
 
       def secure_api_response_actual
@@ -17,7 +24,7 @@ module SecureApi
       private
 
       def encrypt_password
-        self.password = Encryptor.new.encrypt(password)
+        send("#{SecureApi.password_attr}=", Encryptor.new.encrypt(password))
       end
     end
   end
