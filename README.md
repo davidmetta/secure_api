@@ -1,3 +1,5 @@
+# THIS REPOSITORY HAS BEEN ARCHIVED AND IS NOW READ-ONLY AND NOT MAINTAINED.
+
 # SecureApi
 
 ![Test](https://github.com/davidmetta/secure_api/workflows/Test/badge.svg)
